@@ -10,9 +10,9 @@ This script also support formatter by [prettier](http://prettier.io/)
 
 ## Installation
 
-Install from [codemirror-anywhere.user.js](https://azu.github.io/codemirror-anywhere/codemirror-anywhere.user.js)
+Install from [codemirror-anywhere.user.js](https://a-lucky.github.io/codemirror-anywhere/codemirror-anywhere.user.js)
 
-- [codemirror-anywhere.user.js](https://azu.github.io/codemirror-anywhere/codemirror-anywhere.user.js)
+- [codemirror-anywhere.user.js](https://a-lucky.github.io/codemirror-anywhere/codemirror-anywhere.user.js)
 
 **Dependencies:**
 
