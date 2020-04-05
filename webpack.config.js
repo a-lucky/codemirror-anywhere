@@ -53,6 +53,15 @@ module.exports = {
                         loader: 'css-loader'
                     }
                 ]
+            },
+            {
+                test: /\.(png|jpg|gif|ttf|eot|woff|woff2)$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: { limit: 8192 }
+                    }
+                ]
             }
         ]
     },
