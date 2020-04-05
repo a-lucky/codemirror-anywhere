@@ -35,11 +35,13 @@
     "gh-pages": "^2.0.1",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.0",
+    "url-loader": "^4.0.0",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
     "codemirror": "^5.2.0",
+    "hypermd": "^0.3.11",
     "prettier": "^1.15.3",
     "structured-source": "^3.0.2"
   }
