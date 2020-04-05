@@ -25,14 +25,14 @@ You need to install Greasemonkey extension before installing this script.
 ## Usage
 
 1. Focus any `<textarea>`
-2. Press <kbd>Cmd+E</kbd> or <kbd>Ctrl+E</kbd>
+2. Press <kbd>Shift+Cmd+E</kbd> or <kbd>Shift+Ctrl+E</kbd>
     - Toggle textarea with CodeMirror
-3. Press <kbd>Cmd+E</kbd> or <kbd>Ctrl+E</kbd>
+3. Press <kbd>Shift+Cmd+E</kbd> or <kbd>Shift+Ctrl+E</kbd>
     - Restore textarea from CodeMirror
 
 ## Shortcut
 
-- <kbd>Cmd+Alt+F</kbd>: Apply [prettier](http://prettier.io/)
+- <kbd>Cmd+Alt+F</kbd> or <kbd>Ctrl+Alt+F</kbd>: Apply [prettier](http://prettier.io/)
 
 ## Contributing
 
