@@ -13,6 +13,7 @@ const banner = `/*!
 // ==/UserScript==
 */`;
 module.exports = {
+    mode: 'development',
     plugins: [
         new webpack.BannerPlugin({
             raw: true,
@@ -23,22 +24,8 @@ module.exports = {
     module: {
         rules: [
             {
-                include: [path.resolve(__dirname, 'src')],
-                loader: 'babel-loader',
-                options: {
-                    plugins: ['syntax-dynamic-import'],
-
-                    presets: [
-                        [
-                            'env',
-                            {
-                                modules: false
-                            }
-                        ]
-                    ]
-                },
-
-                test: /\.js$/
+                test: /\.(ts)$/,
+                use: 'ts-loader',
             },
             {
                 test: /\.css$/,
@@ -65,9 +52,14 @@ module.exports = {
             }
         ]
     },
+    resolve: {
+        extensions: [
+            '.ts', '.js',
+        ]
+    },
 
     entry: {
-        "codemirror-anywhere.user": "./lib/codemirror-anywhere.user.js"
+        "codemirror-anywhere.user": "./lib/codemirror-anywhere.user.ts"
     },
     output: {
         filename: '[name].js',
