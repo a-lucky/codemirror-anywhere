@@ -1,4 +1,5 @@
 import Prettier from "prettier/standalone";
+// @ts-ignore
 import ParserBabylon from "prettier/parser-babylon";
 import ParserTypeScript from "prettier/parser-typescript";
 import ParserMarkdown from "prettier/parser-markdown";
@@ -30,7 +31,7 @@ function insertOnce() {
     isInsertCSS = true;
 }
 
-function prettierCode(code) {
+function prettierCode(code: string) {
     const parser = 'markdown';
     const plugins = [
         ParserBabylon,
@@ -44,18 +45,14 @@ function prettierCode(code) {
     });
 }
 
-function getCaret(el) {
+function getCaret(el: HTMLTextAreaElement) {
     if (el.selectionStart) {
         return el.selectionStart;
     }
     return 0;
 }
 
-function onChange(originalTextArea, cm) {
-    originalTextArea.value = cm.getValue();
-}
-
-function positionOfCaret(textarea) {
+function positionOfCaret(textarea: HTMLTextAreaElement) {
     const src = new StructuredSource(textarea.value);
     const caretPosition = getCaret(textarea);
     const indexToPosition = src.indexToPosition(caretPosition);
@@ -68,7 +65,7 @@ function positionOfCaret(textarea) {
 
 const textareaSet = new Set();
 
-export function boot(textarea) {
+export function boot(textarea: HTMLTextAreaElement) {
     if (textareaSet.has(textarea)) {
         return;
     }
@@ -76,7 +73,7 @@ export function boot(textarea) {
 
     insertOnce();
 
-    function restoreTextArea(cm) {
+    function restoreTextArea(cm: CodeMirror.EditorFromTextArea) {
         console.log("codemirror-anywhere:reset");
         const textarea = cm.getTextArea();
         cm.toTextArea();
@@ -84,7 +81,7 @@ export function boot(textarea) {
         textareaSet.delete(textarea);
     };
 
-    function formatWithPrettier(cm) {
+    function formatWithPrettier(cm: CodeMirror.Editor) {
         const text = cm.getValue();
         const formattedCode = prettierCode(text);
         if (formattedCode !== text) {
@@ -93,8 +90,8 @@ export function boot(textarea) {
     };
 
     const extraKeys = {
-        "Shift-Cmd-E": restoreTextArea,
-        "Shift-Ctrl-E": KeyUtil.withoutMacOS(restoreTextArea),
+        "Shift-Cmd-E": restoreTextArea as ((cm: CodeMirror.Editor) => void),
+        "Shift-Ctrl-E": KeyUtil.withoutMacOS(restoreTextArea) as ((cm: CodeMirror.Editor) => void),
         "Enter": "newlineAndIndentContinueMarkdownList",
         "Cmd-Alt-F": formatWithPrettier,
         "Ctrl-Alt-F": KeyUtil.withoutMacOS(formatWithPrettier),
@@ -107,7 +104,6 @@ export function boot(textarea) {
         lineNumbers: true
     });
     myCodeMirror.setOption("extraKeys", extraKeys);
-    myCodeMirror.on("change", onChange.bind(myCodeMirror, textarea));
     myCodeMirror.setCursor(position);
 
     HyperMD.switchToHyperMD(myCodeMirror);

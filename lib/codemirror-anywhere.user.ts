@@ -3,10 +3,10 @@ import { boot } from "./boot-codemirror";
 
 const textAreaList = Array.from(document.getElementsByTagName("textarea"));
 
-function textAreaHandler(event) {
+function textAreaHandler(event: KeyboardEvent) {    
     if (event.shiftKey && KeyUtil.isModKey(event) && event.key === "e") {
         console.log("codemirror-anywhere:boot-codemirror");
-        boot(event.target);
+        boot(event.target as HTMLTextAreaElement);
     }
 }
 
